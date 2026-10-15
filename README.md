@@ -227,7 +227,7 @@
                         <div class="relative glass p-6 rounded-3xl border border-slate-700/50 space-y-6">
                             <div class="relative h-72 rounded-2xl overflow-hidden group">
                                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-                                     alt="Суон Хилк (на фото не он)" 
+                                     alt="Суон Хилк" 
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                      onerror="this.src='https://placehold.co/600x600/1e293b/ffffff?text=Аватар'">
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
@@ -263,7 +263,7 @@
         <section id="page-about" class="page-section space-y-12">
             <div class="text-center max-w-2xl mx-auto space-y-3">
                 <h2 class="text-3xl sm:text-4xl font-extrabold">Обо мне & <span class="gradient-text">Навыки</span></h2>
-                <p class="text-slate-400">Узнай больше о моём стеке технологий и пути в веб-разработке.</p>
+                <p class="text-slate-400">бла была бла</p>
             </div>
 
             <!-- Биография и история -->
@@ -292,13 +292,13 @@
                             <span class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full bg-blue-500 ring-4 ring-slate-950"></span>
                             <span class="text-xs font-mono text-blue-400">2024 — Настоящее время</span>
                             <h4 class="font-semibold text-slate-200">Freelance & Web Development</h4>
-                            <p class="text-xs text-slate-400 mt-1">Разработка сайтов-визиток, верстка лендингов, SPA приложений.</p>
+                            <p class="text-xs text-slate-400 mt-1">Лидогенерация, Оперирование ПК, Ведение дебатов</p>
                         </div>
                         <div class="relative">
                             <span class="absolute -left-[31px] top-1 w-3.5 h-3.5 rounded-full bg-purple-500 ring-4 ring-slate-950"></span>
                             <span class="text-xs font-mono text-purple-400">2023 — 2024</span>
-                            <h4 class="font-semibold text-slate-200">Изучение HTML, CSS, JavaScript</h4>
-                            <p class="text-xs text-slate-400 mt-1">Освоил адаптивную верстку, работу с DOM, Tailwind CSS и базовый React.</p>
+                            <h4 class="font-semibold text-slate-200">что-то там номер 3</h4>
+                            <p class="text-xs text-slate-400 mt-1">Что-то про навыки</p>
                         </div>
                     </div>
                 </div>
