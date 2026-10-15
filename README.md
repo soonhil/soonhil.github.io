@@ -207,7 +207,7 @@
                     <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80">
                         <div>
                             <p class="text-3xl font-extrabold text-slate-100">15+</p>
-                            <p class="text-xs text-slate-400 mt-1">Философских проэктов</p>
+                            <p class="text-xs text-slate-400 mt-1">Философских проектов</p>
                         </div>
                         <div>
                             <p class="text-3xl font-extrabold text-slate-100">2+ года</p>
@@ -226,13 +226,13 @@
                         <div class="absolute inset-0 gradient-bg rounded-3xl blur-2xl opacity-40 animate-pulse"></div>
                         <div class="relative glass p-6 rounded-3xl border border-slate-700/50 space-y-6">
                             <div class="relative h-72 rounded-2xl overflow-hidden group">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+                                <img src="https://images.лллcom/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
                                      alt="Суон Хилк" 
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                      onerror="this.src='https://placehold.co/600x600/1e293b/ffffff?text=Аватар'">
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                                 <div class="absolute bottom-4 left-4 right-4">
-                                    <p class="text-lg font-bold text-white">Алексей</p>
+                                    <p class="text-lg font-bold text-white">Нищий Софист</p>
                                     <p class="text-xs text-slate-300">Frontend Web Developer</p>
                                 </div>
                             </div>
