@@ -241,7 +241,7 @@
                             <div class="flex items-center justify-between pt-2">
                                 <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Быстрая связь:</span>
                                 <div class="flex items-center gap-3">
-                                    <a href="https://t.me@soonhil" target="_blank" class="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-blue-400 hover:scale-110 transition-all">
+                                    <a href="https://t.me.soonhil" target="_blank" class="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-blue-400 hover:scale-110 transition-all">
                                         <i class="fa-brands fa-telegram"></i>
                                     </a>
                                     <a href="https://github.com/suonhilk" target="_blank" class="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-300 hover:text-purple-400 hover:scale-110 transition-all">
