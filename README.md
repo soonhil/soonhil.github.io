@@ -1,5 +1,4 @@
-```html
-<!DOCTYPE html>
+
 <html lang="ru" class="dark">
 <head>
     <meta charset="UTF-8">
@@ -182,15 +181,15 @@
                 <div class="lg:col-span-7 space-y-6">
                     <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-blue-500/30 text-blue-400 text-xs font-semibold tracking-wide">
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Открыт к новым проектам и фрилансу
+                        Наконец-то я разобрался как сделать этот дашборд
                     </div>
 
                     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-                        Создаю веб-сайты с <span class="gradient-text">уникальным вайбом</span>
+                        Создаю веб-сайты с <span class="gradient-text">уникальным вайб-кодом</span>
                     </h1>
 
                     <p class="text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
-                        Привет! Я веб-разработчик и креатор. Превращаю идеи в стильные, быструщие и удобные сайты. Это мой персональный уголок в сети.
+                        Привет! Я оператор ПК, Промо консультантант и Практический Философ на пол ставки.
                     </p>
 
                     <!-- Кнопки действий -->
@@ -275,10 +274,10 @@
                     </div>
                     <h3 class="text-xl font-bold">Кто я такой?</h3>
                     <p class="text-slate-300 leading-relaxed text-sm">
-                        Я увлекаюсь созданием удобных и красивые пользовательских интерфейсов. Верю, что хороший сайт должен быть не только функциональным, но и приносить эстетическое удовольствие пользователю.
+                        бла бла бла что-то там про философию
                     </p>
                     <p class="text-slate-400 leading-relaxed text-sm">
-                        Постоянно изучаю новые тренды в веб-дизайне, фронтенде и анимациях. Готов браться за нестандартные задачи!
+                        что-то там это и что-то, что-то это
                     </p>
                 </div>
 
@@ -307,7 +306,7 @@
 
             <!-- Блок Навыков -->
             <div class="glass p-8 rounded-3xl border border-slate-800 space-y-6">
-                <h3 class="text-2xl font-bold">Технологический стек</h3>
+                <h3 class="text-2xl font-bold">Всё технологично</h3>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <!-- Навык 1 -->
