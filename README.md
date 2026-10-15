@@ -107,7 +107,7 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-lg tracking-tight leading-none group-hover:text-blue-400 transition-colors">Суон Хилк</span>
-                    <span class="text-xs text-slate-400 font-medium mt-1">Frontend & Creator</span>
+                    <span class="text-xs text-slate-400 font-medium mt-1">Практический Философ</span>
                 </div>
             </a>
 
@@ -233,7 +233,7 @@
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
                                 <div class="absolute bottom-4 left-4 right-4">
                                     <p class="text-lg font-bold text-white">Нищий Софист</p>
-                                    <p class="text-xs text-slate-300">Frontend Web Developer</p>
+                                    <p class="text-xs text-slate-300">Амбициозный парень</p>
                                 </div>
                             </div>
 
