@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персональный сайт-визитка</title>
+    <title>Веб-визитка</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -106,7 +106,7 @@
                     АВ
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-lg tracking-tight leading-none group-hover:text-blue-400 transition-colors">Алексей Вайб</span>
+                    <span class="font-bold text-lg tracking-tight leading-none group-hover:text-blue-400 transition-colors">Суон Хилк</span>
                     <span class="text-xs text-slate-400 font-medium mt-1">Frontend & Creator</span>
                 </div>
             </a>
@@ -185,7 +185,7 @@
                     </div>
 
                     <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-                        Создаю веб-сайты с <span class="gradient-text">уникальным вайб-кодом</span>
+                        Работаю над этой <span class="gradient-text">веб-визиткой</span>
                     </h1>
 
                     <p class="text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
@@ -207,11 +207,11 @@
                     <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800/80">
                         <div>
                             <p class="text-3xl font-extrabold text-slate-100">15+</p>
-                            <p class="text-xs text-slate-400 mt-1">Готовых проектов</p>
+                            <p class="text-xs text-slate-400 mt-1">Философских проэктов</p>
                         </div>
                         <div>
                             <p class="text-3xl font-extrabold text-slate-100">2+ года</p>
-                            <p class="text-xs text-slate-400 mt-1">Опыта в верстке</p>
+                            <p class="text-xs text-slate-400 mt-1">Опыта в накрутка опыта</p>
                         </div>
                         <div>
                             <p class="text-3xl font-extrabold text-slate-100">100%</p>
@@ -227,7 +227,7 @@
                         <div class="relative glass p-6 rounded-3xl border border-slate-700/50 space-y-6">
                             <div class="relative h-72 rounded-2xl overflow-hidden group">
                                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
-                                     alt="Алексей Вайб Фото" 
+                                     alt="Суон Хилк (на фото не он)" 
                                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                      onerror="this.src='https://placehold.co/600x600/1e293b/ffffff?text=Аватар'">
                                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
