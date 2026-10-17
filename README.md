@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="ru" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Веб-визитка</title>
+    <title>Суон Хилк — Веб-визитка</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -17,14 +18,6 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                        }
                     }
                 }
             }
@@ -32,9 +25,9 @@
     </script>
 
     <style>
-        /* Универсальный стиль стекла для светлой и темной темы */
+        /* Стиль стекла для светлой и темной темы */
         .glass {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(0, 0, 0, 0.08);
@@ -99,7 +92,7 @@
     <header class="sticky top-0 z-40 w-full glass border-b border-slate-200 dark:border-slate-800/50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <!-- Логотип -->
+            <!-- Логотип и Имя -->
             <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
                 <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">
                     AB
@@ -126,15 +119,10 @@
                 </button>
             </nav>
 
-            <!-- Действия справа -->
+            <!-- Кнопки темы и меню -->
             <div class="flex items-center gap-3">
                 <button id="theme-toggle" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all" title="Сменить тему">
                     <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
-                </button>
-
-                <button onclick="openInspectorModal()" class="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-800/50 hover:bg-purple-200 transition-all">
-                    <i class="fa-solid fa-code"></i>
-                    <span>Код страницы</span>
                 </button>
 
                 <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300">
@@ -194,7 +182,7 @@
             <!-- Лёгкая горизонтальная линия -->
             <hr class="border-slate-200 dark:border-slate-800/80 my-8">
 
-            <!-- 3 дополнительные кнопки на одной строке -->
+            <!-- 3 кнопки на одной строке -->
             <div class="flex flex-wrap items-center gap-3">
                 <button onclick="navigateTo('projects')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
                     Личные
@@ -256,18 +244,6 @@
         </div>
     </footer>
 
-    <!-- Модальное окно инспектора кода -->
-    <div id="inspector-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 dark:bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="glass max-w-xl w-full p-6 rounded-3xl border border-slate-300 dark:border-slate-700 space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">Код страницы</h3>
-                <button onclick="closeInspectorModal()" class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
-            </div>
-            <p class="text-xs text-slate-600 dark:text-slate-300">Это полноценный одностраничный сайт на HTML, Tailwind CSS и JavaScript с переключением разделов и поддержкой тем.</p>
-            <button onclick="closeInspectorModal()" class="w-full py-2.5 rounded-xl gradient-bg font-semibold text-white">Закрыть</button>
-        </div>
-    </div>
-
     <!-- СКРИПТЫ НАВИГАЦИИ И ТЕМ -->
     <script>
         function navigateTo(pageId) {
@@ -284,14 +260,6 @@
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
-        }
-
-        function openInspectorModal() {
-            document.getElementById('inspector-modal').classList.remove('hidden');
-        }
-
-        function closeInspectorModal() {
-            document.getElementById('inspector-modal').classList.add('hidden');
         }
 
         const themeToggle = document.getElementById('theme-toggle');
