@@ -49,12 +49,23 @@ function navigateTo(pageId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Степень выделения вкладок мобильного меню
+const mobileLevels = {
+    home:    "font-bold bg-slate-200/80 dark:bg-slate-800/80",
+    about:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
+    philo:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
+    contact: "font-medium bg-slate-200/25 dark:bg-slate-800/25"
+};
+
 function updateActiveNav(pageId) {
     document.querySelectorAll('.mobile-nav-btn').forEach(function (btn) {
-        btn.className = "mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900";
+        const id = btn.id.replace('mobile-nav-', '');
+        const level = mobileLevels[id] || "font-medium";
+        const color = (id === pageId)
+            ? "text-blue-600 dark:text-blue-400 border border-blue-500/20"
+            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900";
+        btn.className = "mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl flex items-center gap-3 transition-all " + level + " " + color;
     });
-    const m = document.getElementById('mobile-nav-' + pageId);
-    if (m) m.className = "mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-semibold flex items-center gap-3 transition-all text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-slate-900 border border-blue-500/20";
 
     document.querySelectorAll('.desktop-nav-btn').forEach(function (btn) {
         btn.className = "desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200";
@@ -98,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', toggleTheme);
 
-    // Закрывать мобильное меню при клике вне его (логотип, контент и т.д.)
+    // Закрывать мобильное меню при клике вне его
     document.addEventListener('click', function (e) {
         const menu = document.getElementById('mobile-menu');
         const menuBtn = document.getElementById('menu-toggle-btn');
@@ -110,6 +121,11 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style>
+    /* Компьютерная версия: весь текст чуть крупнее */
+    @media (min-width: 1024px) {
+        html { font-size: 17px; }
+    }
+
     .glass {
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(16px);
@@ -160,8 +176,8 @@ document.addEventListener('DOMContentLoaded', function () {
         <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group">
             <div id="header-icon" class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">AB</div>
             <div class="flex flex-col">
-                <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors"><{SoonHil}></span></span>
-                <span id="header-subtitle" class="text-[11px] text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
+                <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;{SoonHil}&gt;</span>
+                <span id="header-subtitle" class="text-[11px] lg:text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
             </div>
         </a>
 
@@ -187,13 +203,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!-- МОБИЛЬНОЕ МЕНЮ -->
     <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-1.5 shadow-2xl">
-        <button onclick="navigateTo('home'); closeMobileMenu();" id="mobile-nav-home" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-house w-5"></i>Главная</button>
-        <button onclick="navigateTo('about'); closeMobileMenu();" id="mobile-nav-about" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-user w-5"></i>Рабочая карьера</button>
-        <button onclick="navigateTo('philo'); closeMobileMenu();" id="mobile-nav-philo" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-brain w-5"></i>Философские проекты</button>
-        <button onclick="navigateTo('personal'); closeMobileMenu();" id="mobile-nav-personal" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-heart w-5"></i>Личные проекты</button>
-        <button onclick="navigateTo('joke'); closeMobileMenu();" id="mobile-nav-joke" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-face-laugh-beam w-5"></i>Шуточные проекты</button>
-        <button onclick="navigateTo('test'); closeMobileMenu();" id="mobile-nav-test" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-vial w-5"></i>Тестовые проекты</button>
-        <button onclick="navigateTo('contact'); closeMobileMenu();" id="mobile-nav-contact" class="mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl font-medium flex items-center gap-3 transition-all"><i class="fa-solid fa-envelope w-5"></i>Контакты</button>
+        <button onclick="navigateTo('home'); closeMobileMenu();" id="mobile-nav-home" class="mobile-nav-btn"><i class="fa-solid fa-house w-5"></i>Главная</button>
+        <button onclick="navigateTo('about'); closeMobileMenu();" id="mobile-nav-about" class="mobile-nav-btn"><i class="fa-solid fa-user w-5"></i>Рабочая карьера</button>
+        <button onclick="navigateTo('philo'); closeMobileMenu();" id="mobile-nav-philo" class="mobile-nav-btn"><i class="fa-solid fa-brain w-5"></i>Философские проекты</button>
+        <button onclick="navigateTo('personal'); closeMobileMenu();" id="mobile-nav-personal" class="mobile-nav-btn"><i class="fa-solid fa-heart w-5"></i>Личные проекты</button>
+        <button onclick="navigateTo('joke'); closeMobileMenu();" id="mobile-nav-joke" class="mobile-nav-btn"><i class="fa-solid fa-face-laugh-beam w-5"></i>Шуточные проекты</button>
+        <button onclick="navigateTo('test'); closeMobileMenu();" id="mobile-nav-test" class="mobile-nav-btn"><i class="fa-solid fa-vial w-5"></i>Тестовые проекты</button>
+        <button onclick="navigateTo('contact'); closeMobileMenu();" id="mobile-nav-contact" class="mobile-nav-btn"><i class="fa-solid fa-envelope w-5"></i>Контакты</button>
     </div>
 </header>
 
@@ -207,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Заинтересован в сотрудничестве и активном карьерном росте
             </div>
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-100">
+            <h1 class="text-4xl sm:text-6xl lg:text-[3rem] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-100">
                 Всем привет меня зовут <span class="gradient-text">Даниил</span>
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
@@ -272,7 +288,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <p class="text-slate-600 dark:text-slate-400">Шуточные, сатирические проекты</p>
         </div>
         <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Пока данный раздел пуст</div>
+            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Пока данный раздел пуст</p>
+        </div>
     </section>
 
     <!-- ТЕСТОВЫЕ ПРОЕКТЫ -->
