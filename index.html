@@ -24,7 +24,27 @@ tailwind.config = {
 
 let currentPage = 'home';
 
+// ===== Навигация через адрес (#about и т.д.), чтобы работала кнопка «Назад» =====
+function getPageFromHash() {
+    const id = location.hash.replace('#', '') || 'home';
+    return document.getElementById('page-' + id) ? id : 'home';
+}
+
 function navigateTo(pageId) {
+    const current = location.hash.replace('#', '') || 'home';
+    if (current !== pageId) {
+        location.hash = pageId;   // создаёт запись в истории и вызывает hashchange
+    } else {
+        showPage(pageId);         // та же страница — просто прокрутка вверх
+    }
+}
+
+window.addEventListener('hashchange', function () {
+    closeMobileMenu();
+    showPage(getPageFromHash());
+});
+
+function showPage(pageId) {
     currentPage = pageId;
     document.querySelectorAll('.page-section').forEach(function (s) { s.classList.remove('active'); });
     const target = document.getElementById('page-' + pageId);
@@ -68,10 +88,10 @@ function updateActiveNav(pageId) {
     });
 
     document.querySelectorAll('.desktop-nav-btn').forEach(function (btn) {
-        btn.className = "desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200";
+        btn.className = "desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200";
     });
     const d = document.getElementById('desktop-nav-' + pageId);
-    if (d) d.className = "desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 shadow-sm";
+    if (d) d.className = "desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 shadow-sm";
 }
 
 function toggleMobileMenu(event) {
@@ -105,7 +125,7 @@ function toggleTheme() {
 
 document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon();
-    updateActiveNav('home');
+    showPage(getPageFromHash());
     const btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', toggleTheme);
 
@@ -173,25 +193,25 @@ document.addEventListener('DOMContentLoaded', function () {
 <header class="sticky top-0 z-40 w-full glass border-b border-slate-200 dark:border-slate-800/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 
-        <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group">
+        <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group shrink-0">
             <div id="header-icon" class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">AB</div>
             <div class="flex flex-col">
                 <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;{SoonHil}&gt;</span>
-                <span id="header-subtitle" class="text-[11px] lg:text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
+                <span id="header-subtitle" class="text-[11px] lg:text-xs whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
             </div>
         </a>
 
-        <nav class="hidden md:flex items-center gap-1 bg-slate-200/80 dark:bg-slate-900/60 p-1.5 rounded-full border border-slate-300 dark:border-slate-800">
-            <button onclick="navigateTo('home')" id="desktop-nav-home" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-house mr-1.5"></i>Главная</button>
-            <button onclick="navigateTo('about')" id="desktop-nav-about" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-user mr-1.5"></i>Рабочая карьера</button>
-            <button onclick="navigateTo('philo')" id="desktop-nav-philo" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-brain mr-1.5"></i>Философские проекты</button>
-            <button onclick="navigateTo('personal')" id="desktop-nav-personal" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-heart mr-1.5"></i>Личные</button>
-            <button onclick="navigateTo('joke')" id="desktop-nav-joke" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-face-laugh-beam mr-1.5"></i>Шуточные</button>
-            <button onclick="navigateTo('test')" id="desktop-nav-test" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-vial mr-1.5"></i>Тестовые</button>
-            <button onclick="navigateTo('contact')" id="desktop-nav-contact" class="desktop-nav-btn px-4 py-2 rounded-full text-sm font-medium transition-all"><i class="fa-solid fa-envelope mr-1.5"></i>Контакты</button>
+        <nav class="hidden md:flex items-center gap-0.5 xl:gap-1 bg-slate-200/80 dark:bg-slate-900/60 p-1 xl:p-1.5 rounded-full border border-slate-300 dark:border-slate-800 shrink-0">
+            <button onclick="navigateTo('home')" id="desktop-nav-home" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-house mr-1.5 hidden xl:inline"></i>Главная</button>
+            <button onclick="navigateTo('about')" id="desktop-nav-about" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-user mr-1.5 hidden xl:inline"></i><span class="xl:hidden">Карьера</span><span class="hidden xl:inline">Рабочая карьера</span></button>
+            <button onclick="navigateTo('philo')" id="desktop-nav-philo" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-brain mr-1.5 hidden xl:inline"></i><span class="xl:hidden">Философия</span><span class="hidden xl:inline">Философские проекты</span></button>
+            <button onclick="navigateTo('personal')" id="desktop-nav-personal" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-heart mr-1.5 hidden xl:inline"></i>Личные</button>
+            <button onclick="navigateTo('joke')" id="desktop-nav-joke" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-face-laugh-beam mr-1.5 hidden xl:inline"></i>Шуточные</button>
+            <button onclick="navigateTo('test')" id="desktop-nav-test" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-vial mr-1.5 hidden xl:inline"></i>Тестовые</button>
+            <button onclick="navigateTo('contact')" id="desktop-nav-contact" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-envelope mr-1.5 hidden xl:inline"></i>Контакты</button>
         </nav>
 
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-3 shrink-0">
             <button id="theme-toggle" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all" title="Сменить тему">
                 <i class="fa-solid fa-sun text-lg" id="theme-icon"></i>
             </button>
@@ -223,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Заинтересован в сотрудничестве и активном карьерном росте
             </div>
-            <h1 class="text-4xl sm:text-6xl lg:text-[3rem] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-100">
+            <h1 class="text-4xl sm:text-5xl lg:text-[2.75rem] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-100">
                 Всем привет меня зовут <span class="gradient-text">Даниил</span>
             </h1>
             <p class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
@@ -314,13 +334,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- ПОДВАЛ -->
 <footer class="relative z-10 w-full border-t border-slate-200 dark:border-slate-800/50 glass">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500 dark:text-slate-400">
-        <span>© 2026 SoonHil — Лозинский Даниил</span>
-        <a href="javascript:void(0)" onclick="navigateTo('contact')" class="inline-flex items-center gap-2 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <i class="fa-solid fa-envelope"></i>Контакты
-        </a>
-    </div>
-</footer>
-
-</body>
-</html>
+    <div class="max-w-6xl mx-au
