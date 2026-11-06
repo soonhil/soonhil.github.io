@@ -56,7 +56,7 @@ const mobileLevels = {
     home:    "font-bold bg-slate-200/80 dark:bg-slate-800/80",
     about:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
     philo:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
-    contact: "font-medium bg-slate-200/25 dark:bg-slate-800/25"
+    projects: "font-medium bg-slate-200/25 dark:bg-slate-800/25"
 };
 
 function updateActiveNav(pageId) {
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
         <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group shrink-0">
-            <div id="header-icon" class="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">ДЛ</div>
+            <div id="header-icon" class="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform overflow-hidden"><img src="IMG_20260811_072145_358.jpg" alt="ДЛ" onerror="this.replaceWith('ДЛ')" class="w-full h-full object-cover"></div>
             <div class="flex flex-col">
                 <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;{SoonHil}&gt;</span>
                 <span id="header-subtitle" class="text-[11px] lg:text-xs whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium mt-1">Даниил Лазовский</span>
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <button onclick="navigateTo('personal')" id="desktop-nav-personal" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-heart mr-1.5 hidden xl:inline"></i>Личные</button>
             <button onclick="navigateTo('joke')" id="desktop-nav-joke" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-face-laugh-beam mr-1.5 hidden xl:inline"></i>Шуточные</button>
             <button onclick="navigateTo('test')" id="desktop-nav-test" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-vial mr-1.5 hidden xl:inline"></i>Тестовые</button>
-            <button onclick="navigateTo('contact')" id="desktop-nav-contact" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-envelope mr-1.5 hidden xl:inline"></i>Контакты</button>
+            <button onclick="navigateTo('projects')" id="desktop-nav-projects" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-layer-group mr-1.5 hidden xl:inline"></i><span class="xl:hidden">Проекты</span><span class="hidden xl:inline">Все мои проекты</span></button>
         </nav>
 
         <div class="flex items-center gap-3 shrink-0">
@@ -204,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <button onclick="navigateTo('personal'); closeMobileMenu();" id="mobile-nav-personal" class="mobile-nav-btn"><i class="fa-solid fa-heart w-5"></i>Личные проекты</button>
         <button onclick="navigateTo('joke'); closeMobileMenu();" id="mobile-nav-joke" class="mobile-nav-btn"><i class="fa-solid fa-face-laugh-beam w-5"></i>Шуточные проекты</button>
         <button onclick="navigateTo('test'); closeMobileMenu();" id="mobile-nav-test" class="mobile-nav-btn"><i class="fa-solid fa-vial w-5"></i>Тестовые проекты</button>
-        <button onclick="navigateTo('contact'); closeMobileMenu();" id="mobile-nav-contact" class="mobile-nav-btn"><i class="fa-solid fa-envelope w-5"></i>Контакты</button>
+        <button onclick="navigateTo('projects'); closeMobileMenu();" id="mobile-nav-projects" class="mobile-nav-btn"><i class="fa-solid fa-layer-group w-5"></i>Все мои проекты</button>
     </div>
 </header>
 
@@ -230,9 +230,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     Философские проекты
                 </button>
             </div>
-            <p class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
-                Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
-            </p>
         </div>
         <hr class="border-slate-200 dark:border-slate-800/80 my-8">
         <div class="flex flex-wrap items-center gap-3">
@@ -240,6 +237,9 @@ document.addEventListener('DOMContentLoaded', function () {
             <button onclick="navigateTo('joke')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Шуточные</button>
             <button onclick="navigateTo('test')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Тестовые</button>
         </div>
+        <p class="mt-2 text-slate-600 dark:text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
+            Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
+        </p>
     </section>
 
     <section id="page-about" class="page-section space-y-8">
@@ -293,10 +293,10 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </section>
 
-    <section id="page-contact" class="page-section space-y-8">
+    <section id="page-projects" class="page-section space-y-8">
         <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Свяжитесь <span class="gradient-text">со мной</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Контакты появятся здесь совсем скоро.</p>
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Все мои <span class="gradient-text">проекты</span></h2>
+            <p class="text-slate-600 dark:text-slate-400">Здесь появятся все мои проекты.</p>
         </div>
     </section>
 </main>
@@ -304,11 +304,11 @@ document.addEventListener('DOMContentLoaded', function () {
 <footer class="relative z-10 w-full mt-8 border-t border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500 dark:text-slate-400">
         <span>© 2026 SoonHil — Даниил Лазовский</span>
-        <a href="javascript:void(0)" onclick="navigateTo('contact')" class="inline-flex items-center gap-2 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <i class="fa-solid fa-envelope"></i>Контакты
+        <a href="javascript:void(0)" onclick="navigateTo('projects')" class="inline-flex items-center gap-2 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <i class="fa-solid fa-layer-group"></i>Все мои проекты
         </a>
     </div>
 </footer>
 
 </body>
-            </html>
+</html>
