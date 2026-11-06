@@ -42,14 +42,14 @@ window.addEventListener('hashchange', function () {
     showPage(getPageFromHash());
 });
 
-function showPage(pageId) {
+function showPage(pageId, instant) {
     currentPage = pageId;
     document.querySelectorAll('.page-section').forEach(function (s) { s.classList.remove('active'); });
     const target = document.getElementById('page-' + pageId);
     if (target) target.classList.add('active');
 
     updateActiveNav(pageId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: instant ? 'auto' : 'smooth' });
 }
 
 const mobileLevels = {
@@ -103,9 +103,13 @@ function toggleTheme() {
     updateThemeIcon();
 }
 
+function markReady() { document.documentElement.classList.add('ready'); }
+window.addEventListener('load', markReady);
+setTimeout(markReady, 2000);
+
 document.addEventListener('DOMContentLoaded', function () {
     updateThemeIcon();
-    showPage(getPageFromHash());
+    showPage(getPageFromHash(), true);
     const btn = document.getElementById('theme-toggle');
     if (btn) btn.addEventListener('click', toggleTheme);
 
@@ -120,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style>
+    html:not(.ready) body { visibility: hidden; }
     @media (min-width: 1024px) {
         html { font-size: 17px; }
     }
@@ -145,20 +150,15 @@ document.addEventListener('DOMContentLoaded', function () {
         -webkit-text-fill-color: transparent;
     }
     .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
-    .page-section {
-        display: none;
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .page-section.active { display: block; opacity: 1; transform: translateY(0); }
+    .page-section { display: none; }
+    .page-section.active { display: block; }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 </style>
 </head>
 
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-300 selection:bg-purple-500 selection:text-white flex flex-col">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-purple-500 selection:text-white flex flex-col">
 
 <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-3xl"></div>
@@ -232,13 +232,13 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
         </div>
         <hr class="border-slate-200 dark:border-slate-800/80 my-0 md:w-2/3 md:mx-auto">
-        <div class="flex flex-wrap items-center gap-3 md:justify-center md:gap-4">
+        <div class="flex flex-wrap items-center gap-3 pb-3 md:justify-center md:gap-4">
             <button onclick="navigateTo('personal')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Личные</button>
             <button onclick="navigateTo('joke')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Шуточные</button>
             <button onclick="navigateTo('test')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Тестовые</button>
         </div>
         <hr class="border-slate-200 dark:border-slate-800/80 my-0 md:w-2/3 md:mx-auto">
-        <p class="mt-2 md:mt-4 text-slate-600 dark:text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl md:mx-auto md:text-center font-light">
+        <p class="pt-10 md:pt-12 text-slate-600 dark:text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl md:mx-auto md:text-center font-light">
             Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
         </p>
     </section>
@@ -309,5 +309,5 @@ document.addEventListener('DOMContentLoaded', function () {
     </section>
 </main>
 
-<footer class="relative z-10 w-full mt-8 border-t border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 backdrop-blur-md">
-    <div class="max-w-6xl mx-aut
+<footer class="relative z-10 w-full shrink-0 mt-8 border-t border-slate-300 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+ 
