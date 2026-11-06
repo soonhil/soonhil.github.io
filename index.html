@@ -84,7 +84,7 @@ function updateActiveNav(pageId) {
         const color = (id === pageId)
             ? "text-blue-600 dark:text-blue-400 border border-blue-500/20"
             : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900";
-        btn.className = "mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl flex items-center gap-3 transition-all " + level + " " + color;
+        btn.className = "mobile-nav-btn w-full text-left px-3 py-2 text-sm rounded-xl flex items-center gap-3 transition-all " + level + " " + color;
     });
 
     document.querySelectorAll('.desktop-nav-btn').forEach(function (btn) {
@@ -191,10 +191,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- ШАПКА / НАВИГАЦИЯ -->
 <header class="sticky top-0 z-40 w-full glass border-b border-slate-200 dark:border-slate-800/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
         <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group shrink-0">
-            <div id="header-icon" class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">AB</div>
+            <div id="header-icon" class="w-9 h-9 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">AB</div>
             <div class="flex flex-col">
                 <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;{SoonHil}&gt;</span>
                 <span id="header-subtitle" class="text-[11px] lg:text-xs whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
@@ -212,17 +212,17 @@ document.addEventListener('DOMContentLoaded', function () {
         </nav>
 
         <div class="flex items-center gap-3 shrink-0">
-            <button id="theme-toggle" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all" title="Сменить тему">
+            <button id="theme-toggle" class="w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all" title="Сменить тему">
                 <i class="fa-solid fa-sun text-lg" id="theme-icon"></i>
             </button>
-            <button id="menu-toggle-btn" onclick="toggleMobileMenu(event)" class="md:hidden w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300">
-                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            <button id="menu-toggle-btn" onclick="toggleMobileMenu(event)" class="md:hidden w-9 h-9 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300">
+                <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
             </button>
         </div>
     </div>
 
     <!-- МОБИЛЬНОЕ МЕНЮ -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-1.5 shadow-2xl">
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full right-3 mt-2 w-64 max-w-[calc(100vw-1.5rem)] rounded-2xl border border-slate-200 dark:border-slate-700/60 bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl p-2 space-y-1 shadow-2xl">
         <button onclick="navigateTo('home'); closeMobileMenu();" id="mobile-nav-home" class="mobile-nav-btn"><i class="fa-solid fa-house w-5"></i>Главная</button>
         <button onclick="navigateTo('about'); closeMobileMenu();" id="mobile-nav-about" class="mobile-nav-btn"><i class="fa-solid fa-user w-5"></i>Рабочая карьера</button>
         <button onclick="navigateTo('philo'); closeMobileMenu();" id="mobile-nav-philo" class="mobile-nav-btn"><i class="fa-solid fa-brain w-5"></i>Философские проекты</button>
@@ -238,6 +238,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!-- ГЛАВНАЯ -->
     <section id="page-home" class="page-section active space-y-8">
+        <div class="flex justify-center">
+            <div class="p-1 rounded-full gradient-bg shadow-lg shadow-blue-500/25">
+                <img src="IMG_20260811_072145_358.jpg" alt="Аватар Даниила" onerror="this.parentElement.style.display='none'" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover border-4 border-slate-50 dark:border-slate-950">
+            </div>
+        </div>
         <div class="space-y-6">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-semibold tracking-wide">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -325,13 +330,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!-- КОНТАКТЫ -->
     <section id="page-contact" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Свяжитесь <span class="gradient-text">со мной</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Контакты появятся здесь совсем скоро.</p>
-        </div>
-    </section>
-</main>
-
-<!-- ПОДВАЛ -->
-<footer class="relative z-10 w-full mt-8 border-t border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 backdrop-blur-md">
-            
+       
