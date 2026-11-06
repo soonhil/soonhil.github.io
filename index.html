@@ -149,6 +149,16 @@ document.addEventListener('DOMContentLoaded', function () {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .site-footer { display: block; position: relative; z-index: 10; width: 100%; margin-top: 32px; border-top: 1px solid #cbd5e1; background: #f1f5f9; color: #64748b; font-size: 14px; }
+    .dark .site-footer { border-top-color: #334155; background: #0f172a; color: #94a3b8; }
+    .site-footer-inner { max-width: 72rem; margin: 0 auto; padding: 24px 16px 56px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+    .site-footer a { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: #334155; text-decoration: none; }
+    .dark .site-footer a { color: #cbd5e1; }
+    .site-footer a:hover { color: #2563eb; }
+    .dark .site-footer a:hover { color: #60a5fa; }
+    @media (min-width: 768px) {
+        .site-footer-inner { flex-direction: row; justify-content: center; gap: 40px; padding-bottom: 24px; }
+    }
     .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
     .page-section { display: none; }
     .page-section.active { display: block; }
@@ -238,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <button onclick="navigateTo('test')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Тестовые</button>
         </div>
         <hr class="border-slate-200 dark:border-slate-800/80 my-0 md:w-2/3 md:mx-auto">
-        <p class="pt-6 md:pt-8 text-slate-600 dark:text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl md:mx-auto md:text-center font-light">
+        <p class="pt-5 md:pt-8 text-slate-600 dark:text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl md:mx-auto md:text-center font-light">
             Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
         </p>
     </section>
@@ -294,20 +304,4 @@ document.addEventListener('DOMContentLoaded', function () {
     <section id="page-test" class="page-section space-y-8">
         <div class="space-y-4">
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Тестовые <span class="gradient-text">Проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Черновики, наработки и тестирование кода.</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Песочница для проверки новых технологий.</p>
-        </div>
-    </section>
-
-    <section id="page-projects" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Все мои <span class="gradient-text">проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Здесь появятся все мои проекты.</p>
-        </div>
-    </section>
-</main>
-
-<footer class="relative z-10 w-full shrink-0 mt-8 border-t border-slate-300 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
    
