@@ -1,337 +1,67 @@
 <!DOCTYPE html>
-<html lang="ru" class="dark">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Веб-визитка — SoonHil</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<script>
-tailwind.config = {
-    darkMode: 'class',
-    theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } }
-};
-
-// Применяем сохранённую тему сразу, чтобы не было мигания
-(function () {
-    try {
-        var saved = localStorage.getItem('theme');
-        if (saved === 'light') document.documentElement.classList.remove('dark');
-        else document.documentElement.classList.add('dark');
-    } catch (e) {}
-})();
-
-let currentPage = 'home';
-
-// ===== Навигация через адрес (#about и т.д.), чтобы работала кнопка «Назад» =====
-function getPageFromHash() {
-    const id = location.hash.replace('#', '') || 'home';
-    return document.getElementById('page-' + id) ? id : 'home';
-}
-
-function navigateTo(pageId) {
-    const current = location.hash.replace('#', '') || 'home';
-    if (current !== pageId) {
-        location.hash = pageId;   // создаёт запись в истории и вызывает hashchange
-    } else {
-        showPage(pageId);         // та же страница — просто прокрутка вверх
-    }
-}
-
-window.addEventListener('hashchange', function () {
-    closeMobileMenu();
-    showPage(getPageFromHash());
-});
-
-function showPage(pageId) {
-    currentPage = pageId;
-    document.querySelectorAll('.page-section').forEach(function (s) { s.classList.remove('active'); });
-    const target = document.getElementById('page-' + pageId);
-    if (target) target.classList.add('active');
-
-    const iconEl = document.getElementById('header-icon');
-    const titleEl = document.getElementById('header-title');
-    const subtitleEl = document.getElementById('header-subtitle');
-    if (iconEl && titleEl && subtitleEl) {
-        if (pageId === 'home') {
-            iconEl.innerHTML = 'AB';
-            titleEl.textContent = '<{SoonHil}>';
-            subtitleEl.textContent = 'Лозинский Даниил';
-            subtitleEl.style.display = 'block';
-        } else {
-            iconEl.innerHTML = '<i class="fa-solid fa-arrow-left text-lg"></i>';
-            titleEl.textContent = 'Вернуться на главную';
-            subtitleEl.style.display = 'none';
-        }
-    }
-    updateActiveNav(pageId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Степень выделения вкладок мобильного меню
-const mobileLevels = {
-    home:    "font-bold bg-slate-200/80 dark:bg-slate-800/80",
-    about:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
-    philo:   "font-semibold bg-slate-200/50 dark:bg-slate-800/50",
-    contact: "font-medium bg-slate-200/25 dark:bg-slate-800/25"
-};
-
-function updateActiveNav(pageId) {
-    document.querySelectorAll('.mobile-nav-btn').forEach(function (btn) {
-        const id = btn.id.replace('mobile-nav-', '');
-        const level = mobileLevels[id] || "font-medium";
-        const color = (id === pageId)
-            ? "text-blue-600 dark:text-blue-400 border border-blue-500/20"
-            : "text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900";
-        btn.className = "mobile-nav-btn w-full text-left px-4 py-2.5 rounded-xl flex items-center gap-3 transition-all " + level + " " + color;
-    });
-
-    document.querySelectorAll('.desktop-nav-btn').forEach(function (btn) {
-        btn.className = "desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200";
-    });
-    const d = document.getElementById('desktop-nav-' + pageId);
-    if (d) d.className = "desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 shadow-sm";
-}
-
-function toggleMobileMenu(event) {
-    if (event) event.stopPropagation();
-    const menu = document.getElementById('mobile-menu');
-    if (menu) menu.classList.toggle('hidden');
-}
-
-function closeMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if (menu && !menu.classList.contains('hidden')) menu.classList.add('hidden');
-}
-
-// ===== Смена темы =====
-function updateThemeIcon() {
-    const icon = document.getElementById('theme-icon');
-    if (!icon) return;
-    const isDark = document.documentElement.classList.contains('dark');
-    // В тёмной теме показываем солнце (переключить на день), в светлой — луну
-    icon.className = isDark ? 'fa-solid fa-sun text-lg' : 'fa-solid fa-moon text-lg';
-}
-
-function toggleTheme() {
-    const root = document.documentElement;
-    root.classList.toggle('dark');
-    try {
-        localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
-    } catch (e) {}
-    updateThemeIcon();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    updateThemeIcon();
-    showPage(getPageFromHash());
-    const btn = document.getElementById('theme-toggle');
-    if (btn) btn.addEventListener('click', toggleTheme);
-
-    // Закрывать мобильное меню при клике вне его
-    document.addEventListener('click', function (e) {
-        const menu = document.getElementById('mobile-menu');
-        const menuBtn = document.getElementById('menu-toggle-btn');
-        if (!menu || menu.classList.contains('hidden')) return;
-        if (menu.contains(e.target) || (menuBtn && menuBtn.contains(e.target))) return;
-        closeMobileMenu();
-    });
-});
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Перцинтель дохода</title>
 <style>
-    /* Компьютерная версия: весь текст чуть крупнее */
-    @media (min-width: 1024px) {
-        html { font-size: 17px; }
-    }
-
-    .glass {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-    .dark .glass {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .gradient-text {
-        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #db2777 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .dark .gradient-text {
-        background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
-    .page-section {
-        display: none;
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .page-section.active { display: block; opacity: 1; transform: translateY(0); }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+:root{--bg:#fff;--fg:#1a1a1a;--grid:#ddd;--c1:#d62728;--c2:#1f77b4;--c3:#2ca02c;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--fg:#eee;--grid:#3a3a3a;--c1:#ff6b6b;--c2:#5aa9e6;--c3:#5fd35f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161616;--fg:#eee;--grid:#3a3a3a;--c1:#ff6b6b;--c2:#5aa9e6;--c3:#5fd35f;color-scheme:dark}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{padding:12px}
+canvas{width:100%;height:60vh;display:block}
+.leg{font-size:13px;margin:8px 0;line-height:1.6}
+.leg i{display:inline-block;width:14px;height:3px;margin-right:6px;vertical-align:middle}
+.row{display:flex;align-items:center;gap:10px;margin-top:8px}
+input[type=range]{flex:1;height:32px}
+input[type=number]{width:80px;font-size:16px;padding:4px;background:var(--bg);color:var(--fg);border:1px solid var(--grid);border-radius:6px}
+#info{font-size:14px;margin-top:6px}
 </style>
 </head>
-
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen font-sans antialiased transition-colors duration-300 selection:bg-purple-500 selection:text-white flex flex-col justify-between">
-
-<!-- ФОНОВЫЕ ЭФФЕКТЫ -->
-<div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    <div class="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 dark:bg-blue-600/20 rounded-full blur-3xl"></div>
-    <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-600/10 dark:bg-pink-600/20 rounded-full blur-3xl"></div>
+<body>
+<p><strong>Сколько процентов людей по миру и по Ташкенту, зарабатывают меньше тебя? </strong></p>
+<canvas id="c"></canvas>
+<div class="leg">
+<div><i style="background:var(--c1)"></i>Распределение дохода по Миру </div>
+<div><i style="background:var(--c2)"></i>Распределение дохода по Ташкенту</div>
+<div><i style="background:var(--c3)"></i> Указанный доход $/мес. - <span id="lx">850</span>$ </div>
 </div>
-
-<!-- ШАПКА / НАВИГАЦИЯ -->
-<header class="sticky top-0 z-40 w-full glass border-b border-slate-200 dark:border-slate-800/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-
-        <a href="javascript:void(0)" onclick="navigateTo('home')" id="header-logo" class="flex items-center gap-3 group shrink-0">
-            <div id="header-icon" class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform">AB</div>
-            <div class="flex flex-col">
-                <span id="header-title" class="font-bold text-base tracking-tight leading-none text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">&lt;{SoonHil}&gt;</span>
-                <span id="header-subtitle" class="text-[11px] lg:text-xs whitespace-nowrap text-slate-500 dark:text-slate-400 font-medium mt-1">Лозинский Даниил</span>
-            </div>
-        </a>
-
-        <nav class="hidden md:flex items-center gap-0.5 xl:gap-1 bg-slate-200/80 dark:bg-slate-900/60 p-1 xl:p-1.5 rounded-full border border-slate-300 dark:border-slate-800 shrink-0">
-            <button onclick="navigateTo('home')" id="desktop-nav-home" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-house mr-1.5 hidden xl:inline"></i>Главная</button>
-            <button onclick="navigateTo('about')" id="desktop-nav-about" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-user mr-1.5 hidden xl:inline"></i><span class="xl:hidden">Карьера</span><span class="hidden xl:inline">Рабочая карьера</span></button>
-            <button onclick="navigateTo('philo')" id="desktop-nav-philo" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-brain mr-1.5 hidden xl:inline"></i><span class="xl:hidden">Философия</span><span class="hidden xl:inline">Философские проекты</span></button>
-            <button onclick="navigateTo('personal')" id="desktop-nav-personal" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-heart mr-1.5 hidden xl:inline"></i>Личные</button>
-            <button onclick="navigateTo('joke')" id="desktop-nav-joke" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-face-laugh-beam mr-1.5 hidden xl:inline"></i>Шуточные</button>
-            <button onclick="navigateTo('test')" id="desktop-nav-test" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-vial mr-1.5 hidden xl:inline"></i>Тестовые</button>
-            <button onclick="navigateTo('contact')" id="desktop-nav-contact" class="desktop-nav-btn whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all"><i class="fa-solid fa-envelope mr-1.5 hidden xl:inline"></i>Контакты</button>
-        </nav>
-
-        <div class="flex items-center gap-3 shrink-0">
-            <button id="theme-toggle" class="w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all" title="Сменить тему">
-                <i class="fa-solid fa-sun text-lg" id="theme-icon"></i>
-            </button>
-            <button id="menu-toggle-btn" onclick="toggleMobileMenu(event)" class="md:hidden w-10 h-10 rounded-xl glass flex items-center justify-center text-slate-700 dark:text-slate-300">
-                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- МОБИЛЬНОЕ МЕНЮ -->
-    <div id="mobile-menu" class="hidden md:hidden border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl px-4 py-4 space-y-1.5 shadow-2xl">
-        <button onclick="navigateTo('home'); closeMobileMenu();" id="mobile-nav-home" class="mobile-nav-btn"><i class="fa-solid fa-house w-5"></i>Главная</button>
-        <button onclick="navigateTo('about'); closeMobileMenu();" id="mobile-nav-about" class="mobile-nav-btn"><i class="fa-solid fa-user w-5"></i>Рабочая карьера</button>
-        <button onclick="navigateTo('philo'); closeMobileMenu();" id="mobile-nav-philo" class="mobile-nav-btn"><i class="fa-solid fa-brain w-5"></i>Философские проекты</button>
-        <button onclick="navigateTo('personal'); closeMobileMenu();" id="mobile-nav-personal" class="mobile-nav-btn"><i class="fa-solid fa-heart w-5"></i>Личные проекты</button>
-        <button onclick="navigateTo('joke'); closeMobileMenu();" id="mobile-nav-joke" class="mobile-nav-btn"><i class="fa-solid fa-face-laugh-beam w-5"></i>Шуточные проекты</button>
-        <button onclick="navigateTo('test'); closeMobileMenu();" id="mobile-nav-test" class="mobile-nav-btn"><i class="fa-solid fa-vial w-5"></i>Тестовые проекты</button>
-        <button onclick="navigateTo('contact'); closeMobileMenu();" id="mobile-nav-contact" class="mobile-nav-btn"><i class="fa-solid fa-envelope w-5"></i>Контакты</button>
-    </div>
-</header>
-
-<!-- ОСНОВНОЙ КОНТЕНТ -->
-<main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10 flex-grow w-full">
-
-    <!-- ГЛАВНАЯ -->
-    <section id="page-home" class="page-section active space-y-8">
-        <div class="space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass border border-blue-500/30 text-blue-600 dark:text-blue-400 text-xs font-semibold tracking-wide">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Заинтересован в сотрудничестве и активном карьерном росте
-            </div>
-            <h1 class="text-4xl sm:text-5xl lg:text-[2.75rem] font-extrabold tracking-tight leading-tight text-slate-900 dark:text-slate-100">
-                Всем привет меня зовут <span class="gradient-text">Даниил</span>
-            </h1>
-            <p class="text-slate-600 dark:text-slate-400 text-lg sm:text-xl leading-relaxed max-w-2xl font-light">
-                Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
-            </p>
-            <div class="flex flex-wrap items-center gap-4 pt-2">
-                <button onclick="navigateTo('about')" class="px-8 py-4 text-base sm:text-lg rounded-2xl gradient-bg font-semibold text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-105 transition-all flex items-center gap-2">
-                    <span>Рабочая карьера</span>
-                    <i class="fa-solid fa-arrow-right text-sm"></i>
-                </button>
-                <button onclick="navigateTo('philo')" class="px-8 py-4 text-base sm:text-lg rounded-2xl glass font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800/80 transition-all">
-                    Философские проекты
-                </button>
-            </div>
-        </div>
-        <hr class="border-slate-200 dark:border-slate-800/80 my-8">
-        <div class="flex flex-wrap items-center gap-3">
-            <button onclick="navigateTo('personal')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Личные</button>
-            <button onclick="navigateTo('joke')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Шуточные</button>
-            <button onclick="navigateTo('test')" class="px-5 py-2.5 rounded-xl glass text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Тестовые</button>
-        </div>
-    </section>
-
-    <!-- О СЕБЕ -->
-    <section id="page-about" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Обо мне & <span class="gradient-text">Навыки</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Информация о моем пути и опыте работы.</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-4 border border-slate-200 dark:border-slate-800">
-            <h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">Кто я такой?</h3>
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Оператор ПК, Промо консультант и Практический Философ. Занимаюсь веб-разработкой и решением интересных задач.</p>
-        </div>
-    </section>
-
-    <!-- ФИЛОСОФСКИЕ ПРОЕКТЫ -->
-    <section id="page-philo" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Философские <span class="gradient-text">Проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">N-ый Систематизм</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Раздел находится в процессе наполнения философскими трудами.</p>
-        </div>
-    </section>
-
-    <!-- ЛИЧНЫЕ ПРОЕКТЫ -->
-    <section id="page-personal" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Личные <span class="gradient-text">Проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Личные соц сети и общие ссылки</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Здесь будут отображаться мои индивидуальные разработки.</p>
-        </div>
-    </section>
-
-    <!-- ШУТОЧНЫЕ ПРОЕКТЫ -->
-    <section id="page-joke" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Шуточные <span class="gradient-text">Проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Шуточные, сатирические проекты</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Пока данный раздел пуст</p>
-        </div>
-    </section>
-
-    <!-- ТЕСТОВЫЕ ПРОЕКТЫ -->
-    <section id="page-test" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Тестовые <span class="gradient-text">Проекты</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Черновики, наработки и тестирование кода.</p>
-        </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Песочница для проверки новых технологий.</p>
-        </div>
-    </section>
-
-    <!-- КОНТАКТЫ -->
-    <section id="page-contact" class="page-section space-y-8">
-        <div class="space-y-4">
-            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Свяжитесь <span class="gradient-text">со мной</span></h2>
-            <p class="text-slate-600 dark:text-slate-400">Контакты появятся здесь совсем скоро.</p>
-        </div>
-    </section>
-</main>
-
-<!-- ПОДВАЛ -->
-<footer class="relative z-10 w-full border-t border-slate-200 dark:border-slate-800/50 glass">
-    <div class="max-w-6xl mx-au
+<div class="row"><b>X</b>
+<input id="s" type="range" min="0" max="2500" step="10" value="850">
+<input id="n" type="number" min="0" max="2500" value="850"></div>
+<div id="info"></div>
+<script>
+const XMAX=2500;
+function erf(x){const s=x<0?-1:1;x=Math.abs(x);const t=1/(1+0.3275911*x);
+const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return s*y}
+const cdf=z=>0.5*(1+erf(z/Math.SQRT2));
+const f1=x=>100*cdf(Math.log(x/273.5)/1.37);
+const f2=x=>100*cdf(Math.log(x/564.7)/1.13);
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');
+const s=document.getElementById('s'),n=document.getElementById('n');
+const v=name=>getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+function draw(){
+const dpr=window.devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;
+cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+const L=36,R=8,T=8,B=24,pw=W-L-R,ph=H-T-B;
+const X=x=>L+x/XMAX*pw,Y=y=>T+(1-y/100)*ph;
+ctx.clearRect(0,0,W,H);ctx.font='11px sans-serif';ctx.fillStyle=v('--fg');ctx.strokeStyle=v('--grid');ctx.lineWidth=1;
+for(let y=0;y<=100;y+=20){ctx.beginPath();ctx.moveTo(L,Y(y));ctx.lineTo(W-R,Y(y));ctx.stroke();ctx.textAlign='right';ctx.fillText(y,L-4,Y(y)+4)}
+for(let x=0;x<=XMAX;x+=500){ctx.beginPath();ctx.moveTo(X(x),T);ctx.lineTo(X(x),T+ph);ctx.stroke();ctx.textAlign='center';ctx.fillText(x,X(x),H-8)}
+function curve(f,c){ctx.strokeStyle=v(c);ctx.lineWidth=2;ctx.beginPath();
+for(let i=1;i<=600;i++){const x=i/600*XMAX;i==1?ctx.moveTo(X(x),Y(f(x))):ctx.lineTo(X(x),Y(f(x)))}ctx.stroke()}
+curve(f1,'--c1');curve(f2,'--c2');
+const xv=+s.value;
+ctx.strokeStyle=v('--c3');ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(X(xv),Y(0));ctx.lineTo(X(xv),Y(100));ctx.stroke();
+[[f1,'--c1'],[f2,'--c2']].forEach(([f,c])=>{ctx.fillStyle=v(c);ctx.beginPath();ctx.arc(X(xv),Y(f(xv)),4.5,0,7);ctx.fill()});
+document.getElementById('lx').textContent=xv;
+document.getElementById('info').textContent='Перцинтель по Миру = '+f1(xv).toFixed(2)+'%,  Перцинтель по Ташкенту = '+f2(xv).toFixed(2)+'%';
+}
+s.oninput=()=>{n.value=s.value;draw()};
+n.oninput=()=>{const t=Math.min(XMAX,Math.max(1,+n.value||1));s.value=t;draw()};
+addEventListener('resize',draw);draw();
+</script>
+</body>
+</html>
