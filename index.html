@@ -148,11 +148,22 @@ background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
 .site-footer a:hover { color: #2563eb; }
 .dark .site-footer a:hover { color: #60a5fa; }
 @media (min-width: 768px) {
-.site-footer-inner { flex-direction: row; justify-content: center; gap: 40px; padding-bottom: 24px; }
+.site-footer-inner { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px 32px; padding-bottom: 24px; }
 }
 .gradient-bg { background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); }
 .page-section { display: none; }
 .page-section.active { display: block; }
+#page-home { margin-bottom: -1.5rem; }
+.lk { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: 16px; text-decoration: none; transition: all .2s; }
+.lk:hover { transform: scale(1.01); border-color: rgba(59, 130, 246, 0.4); }
+.lk-ic { width: 48px; height: 48px; flex-shrink: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2); }
+.lk-t { flex: 1; min-width: 0; }
+.lk-t b { display: block; font-size: 16px; line-height: 1.3; color: #0f172a; }
+.dark .lk-t b { color: #f1f5f9; }
+.lk-t span { display: block; font-size: 13px; margin-top: 4px; color: #64748b; word-break: break-all; }
+.dark .lk-t span { color: #94a3b8; }
+.lk > i:last-child { color: #94a3b8; }
+.lk-list { display: flex; flex-direction: column; gap: 12px; }
 </style>
 <style type="text/tailwindcss">
 .dn{@apply whitespace-nowrap px-2.5 lg:px-3 xl:px-4 py-2 rounded-full text-xs lg:text-[13px] xl:text-sm font-medium transition-all}
@@ -248,30 +259,63 @@ background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
 <div class="glass card">
 <p class="cp">Раздел находится в процессе наполнения философскими трудами.</p>
 </div>
+<div class="lk-list">
+<a href="https://t.me/SuonHilk" target="_blank" rel="noopener" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-brands fa-telegram"></i></div>
+<div class="lk-t"><b>Телеграм-канал</b><span>t.me/SuonHilk</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+<a href="mailto:suonhilk@gmail.com" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-solid fa-envelope"></i></div>
+<div class="lk-t"><b>Почта</b><span>suonhilk@gmail.com</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+</div>
 </section>
 <section id="page-personal" class="page-section space-y-8">
 <div class="space-y-4">
 <h2 class="h2">Личные <span class="gradient-text">Проекты</span></h2>
 <p class="sub">Личные соц сети и общие ссылки</p>
 </div>
-<a href="https://soonhil.github.io/Median" target="_blank" rel="noopener" class="glass p-5 rounded-2xl flex items-center gap-4 border border-slate-200 dark:border-slate-800 hover:scale-[1.01] hover:border-blue-500/40 transition-all">
-<div class="w-12 h-12 shrink-0 rounded-xl gradient-bg flex items-center justify-center text-white text-xl shadow-lg shadow-blue-500/20">
-<i class="fa-solid fa-chart-line"></i>
-</div>
-<div class="flex-1 min-w-0">
-<h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 leading-snug">Перцентиль дохода в месяц по миру и по Ташкенту</h3>
-<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">soonhil.github.io/Median</p>
-</div>
-<i class="fa-solid fa-arrow-up-right-from-square text-slate-400 dark:text-slate-500"></i>
+<div class="lk-list">
+<a href="tel:+998971774585" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-solid fa-phone"></i></div>
+<div class="lk-t"><b>Телефон</b><span>+998 97 177 45 85</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
 </a>
+<a href="https://t.me/soonhil" target="_blank" rel="noopener" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-brands fa-telegram"></i></div>
+<div class="lk-t"><b>Телеграм</b><span>@soonhil</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+<a href="https://soonhil.github.io/Median" target="_blank" rel="noopener" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-solid fa-chart-line"></i></div>
+<div class="lk-t"><b>Перцентиль дохода в месяц по миру и по Ташкенту</b><span>soonhil.github.io/Median</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+</div>
 </section>
 <section id="page-joke" class="page-section space-y-8">
 <div class="space-y-4">
 <h2 class="h2">Шуточные <span class="gradient-text">Проекты</span></h2>
 <p class="sub">Шуточные, сатирические проекты</p>
 </div>
-<div class="glass card">
-<p class="cp">Пока данный раздел пуст</p>
+<div class="lk-list">
+<a href="https://t.me/Beggar_Sophist" target="_blank" rel="noopener" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-brands fa-telegram"></i></div>
+<div class="lk-t"><b>Телеграм-канал</b><span>t.me/Beggar_Sophist</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+<a href="https://reddit.com/u/BeggarSophist" target="_blank" rel="noopener" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-brands fa-reddit-alien"></i></div>
+<div class="lk-t"><b>Reddit</b><span>reddit.com/u/BeggarSophist</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
+<a href="mailto:BeggarSophist@gmail.com" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-solid fa-envelope"></i></div>
+<div class="lk-t"><b>Почта</b><span>BeggarSophist@gmail.com</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
 </div>
 </section>
 <section id="page-test" class="page-section space-y-8">
@@ -281,6 +325,13 @@ background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
 </div>
 <div class="glass card">
 <p class="cp">Песочница для проверки новых технологий.</p>
+</div>
+<div class="lk-list">
+<a href="mailto:xcvbnkal@gmail.com" class="glass lk">
+<div class="lk-ic gradient-bg"><i class="fa-solid fa-envelope"></i></div>
+<div class="lk-t"><b>Почта</b><span>xcvbnkal@gmail.com</span></div>
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+</a>
 </div>
 </section>
 <section id="page-projects" class="page-section space-y-8">
@@ -293,6 +344,8 @@ background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
 <footer class="site-footer">
 <div class="site-footer-inner">
 <span>© 2026 SoonHil — Даниил Лазовский</span>
+<a href="tel:+998971774585"><i class="fa-solid fa-phone"></i>+998 97 177 45 85</a>
+<a href="https://t.me/soonhil" target="_blank" rel="noopener"><i class="fa-brands fa-telegram"></i>@soonhil</a>
 <a href="javascript:void(0)" onclick="navigateTo('projects')">
 <i class="fa-solid fa-layer-group"></i>Все мои проекты
 </a>
