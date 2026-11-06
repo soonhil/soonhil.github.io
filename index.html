@@ -237,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <button onclick="navigateTo('joke')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Шуточные</button>
             <button onclick="navigateTo('test')" class="px-5 py-2.5 md:px-8 md:py-3.5 rounded-xl glass text-sm md:text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">Тестовые</button>
         </div>
+        <hr class="border-slate-200 dark:border-slate-800/80 my-0 md:w-2/3 md:mx-auto">
         <p class="mt-2 md:mt-4 text-slate-600 dark:text-slate-400 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl md:mx-auto md:text-center font-light">
             Я являюсь оператором ПК, опытным Промо-консультантом и имею несколько философских проектов
         </p>
@@ -268,9 +269,16 @@ document.addEventListener('DOMContentLoaded', function () {
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-slate-100">Личные <span class="gradient-text">Проекты</span></h2>
             <p class="text-slate-600 dark:text-slate-400">Личные соц сети и общие ссылки</p>
         </div>
-        <div class="glass p-6 rounded-2xl space-y-3 border border-slate-200 dark:border-slate-800">
-            <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">Здесь будут отображаться мои индивидуальные разработки.</p>
-        </div>
+        <a href="https://soonhil.github.io/Median" target="_blank" rel="noopener" class="glass p-5 rounded-2xl flex items-center gap-4 border border-slate-200 dark:border-slate-800 hover:scale-[1.01] hover:border-blue-500/40 transition-all">
+            <div class="w-12 h-12 shrink-0 rounded-xl gradient-bg flex items-center justify-center text-white text-xl shadow-lg shadow-blue-500/20">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div class="flex-1 min-w-0">
+                <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 leading-snug">Перцентиль дохода в месяц по миру и по Ташкенту</h3>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">soonhil.github.io/Median</p>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 dark:text-slate-500"></i>
+        </a>
     </section>
 
     <section id="page-joke" class="page-section space-y-8">
@@ -302,13 +310,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </main>
 
 <footer class="relative z-10 w-full mt-8 border-t border-slate-300 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-slate-500 dark:text-slate-400">
-        <span>© 2026 SoonHil — Даниил Лазовский</span>
-        <a href="javascript:void(0)" onclick="navigateTo('projects')" class="inline-flex items-center gap-2 font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <i class="fa-solid fa-layer-group"></i>Все мои проекты
-        </a>
-    </div>
-</footer>
-
-</body>
-</html>
+    <div class="max-w-6xl mx-aut
